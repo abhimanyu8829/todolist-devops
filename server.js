@@ -6,7 +6,7 @@ app.use(express.json());
 let todos = ["Learn DevOps", "Setup CI/CD"];
 
 app.get("/", (req, res) => {
-  res.send("Todo App is running ✅");
+  res.send("🚀 Webhook is working! CI/CD from GitHub → Jenkins → Docker → Azure!");
 });
 
 app.get("/todos", (req, res) => {
