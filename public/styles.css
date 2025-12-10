@@ -303,12 +303,12 @@ body {
 }
 
 .edit-btn {
-    background: #dbeafe;
-    color: #06b6d4;
+    background: #dcfce7;
+    color: #059669;
 }
 
 .edit-btn:hover {
-    background: #bfdbfe;
+    background: #bbf7d0;
 }
 
 .delete-btn {
@@ -329,9 +329,9 @@ body {
 
 .clear-btn {
     padding: 10px 20px;
-    background: #fee2e2;
-    color: var(--danger-color);
-    border: 1px solid #fecaca;
+    background: #dcfce7;
+    color: var(--primary-dark);
+    border: 1px solid #bbf7d0;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
@@ -343,9 +343,9 @@ body {
 }
 
 .clear-btn:hover {
-    background: var(--danger-color);
+    background: var(--primary-dark);
     color: white;
-    border-color: var(--danger-color);
+    border-color: var(--primary-dark);
 }
 
 /* Toast Notification */
