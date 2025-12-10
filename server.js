@@ -64,7 +64,7 @@ app.delete("/api/todos/:id", (req, res) => {
   }
   
   const deletedTodo = todos.splice(index, 1);
-  res.json({ message: "Todo deleted", todo: deletedTodo[0] });
+  res.json({ message: "Todo removed", todo: deletedTodo[0] });
 });
 
 // Toggle todo completion
