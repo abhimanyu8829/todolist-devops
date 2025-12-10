@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 let todos = [
-  { id: 1, title: "Learn DevOps", completed: false, createdAt: new Date() },
+  { id: 1, title: "Learn kubernetes", completed: false, createdAt: new Date() },
   { id: 2, title: "Setup CI/CD", completed: false, createdAt: new Date() }
 ];
 
@@ -64,7 +64,7 @@ app.delete("/api/todos/:id", (req, res) => {
   }
   
   const deletedTodo = todos.splice(index, 1);
-  res.json({ message: "Todo removed", todo: deletedTodo[0] });
+  res.json({ message: "Todo Deleted", todo: deletedTodo[0] });
 });
 
 // Toggle todo completion
