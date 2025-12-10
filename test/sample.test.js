@@ -1,71 +1,27 @@
-const http = require("http");
-const assert = require("assert");
+const request = require('supertest');
+const app = require('../server');
 
-describe("Todo API Test", () => {
-  it("GET / should return 200", (done) => {
-    http.get("http://localhost:3000", (res) => {
-      assert.strictEqual(res.statusCode, 200);
-      done();
-    });
+describe('Todo API Test', () => {
+  it('GET / should return 200', async () => {
+    const res = await request(app).get('/');
+    expect(res.status).toBe(200);
   });
 
-  it("GET /api/todos should return todos array", (done) => {
-    const options = {
-      hostname: "localhost",
-      port: 3000,
-      path: "/api/todos",
-      method: "GET",
-    };
-
-    const req = http.request(options, (res) => {
-      let data = "";
-      res.on("data", (chunk) => {
-        data += chunk;
-      });
-      res.on("end", () => {
-        assert.strictEqual(res.statusCode, 200);
-        const parsed = JSON.parse(data);
-        assert(Array.isArray(parsed.todos));
-        done();
-      });
-    });
-    req.on("error", (e) => {
-      done(e);
-    });
-    req.end();
+  it('GET /api/todos should return todos array', async () => {
+    const res = await request(app).get('/api/todos');
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body.todos)).toBe(true);
   });
 
-  it("POST /api/todos should create a new todo", (done) => {
-    const postData = JSON.stringify({ title: "Test Todo" });
-    const options = {
-      hostname: "localhost",
-      port: 3000,
-      path: "/api/todos",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(postData),
-      },
-    };
+  it('POST /api/todos should create a new todo', async () => {
+    const res = await request(app)
+      .post('/api/todos')
+      .send({ title: 'Test Todo' })
+      .set('Accept', 'application/json');
 
-    const req = http.request(options, (res) => {
-      let data = "";
-      res.on("data", (chunk) => {
-        data += chunk;
-      });
-      res.on("end", () => {
-        assert.strictEqual(res.statusCode, 201);
-        const parsed = JSON.parse(data);
-        assert(parsed.todo);
-        assert.strictEqual(parsed.todo.title, "Test Todo");
-        done();
-      });
-    });
-    req.on("error", (e) => {
-      done(e);
-    });
-    req.write(postData);
-    req.end();
+    expect(res.status).toBe(201);
+    expect(res.body.todo).toBeDefined();
+    expect(res.body.todo.title).toBe('Test Todo');
   });
 });
 
