@@ -1,12 +1,26 @@
 {
   "name": "todolist-devops",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "A modern todo list application with a beautiful UI",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Running tests...\" && exit 0"
+    "dev": "node server.js",
+    "test": "jest --testPathPattern=sample.test.js"
   },
+  "keywords": [
+    "todo",
+    "task",
+    "list",
+    "devops"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   }
 }
